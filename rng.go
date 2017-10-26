@@ -23,14 +23,23 @@ func (o *Range) String() string {
 	return fmt.Sprintf("Range(i=%v, j=%v)", o.i, o.j)
 }
 
-//get I
+//Get I
 func (o *Range) I() int {
 	return o.i
 }
 
-//get J
+//Get J
 func (o *Range) J() int {
 	return o.j
+}
+
+//Get Index from I
+func (o *Range) Index(index int) int {
+	var k = o.i + index
+	if k > o.j{
+		panic("undex out of bounds, i <= k <= j")
+	}
+	return k
 }
 
 //clone Range
