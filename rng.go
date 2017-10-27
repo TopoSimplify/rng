@@ -36,7 +36,7 @@ func (o *Range) J() int {
 //Get Index from I
 func (o *Range) Index(index int) int {
 	var k = o.i + index
-	if k > o.j{
+	if k > o.j {
 		panic("undex out of bounds, i <= k <= j")
 	}
 	return k
@@ -49,7 +49,12 @@ func (o *Range) Clone() *Range {
 
 //compare equality of two ranges
 func (o *Range) Equals(r *Range) bool {
-	return  (o.i == r.i) && (o.j == r.j)
+	return (o.i == r.i) && (o.j == r.j)
+}
+
+//compare equality of two ranges
+func (o *Range) Contiguous(r *Range) bool {
+	return (o.i < r.j && o.j == r.i) || (r.i < o.j && r.j == o.i)
 }
 
 //as segment

@@ -11,8 +11,16 @@ func TestRange(t *testing.T) {
 	g.Describe("Range", func() {
 		g.It("int range", func() {
 			g.Timeout(1 * time.Minute)
-			rng := NewRange(3, 7)
+			arng := NewRange(7, 12)
+			brng := NewRange(0, 3)
+			crng := NewRange(2, 5)
+			rng  := NewRange(3, 7)
 			xrng := rng.Clone()
+			g.Assert(arng.Contiguous(xrng)).IsTrue()
+			g.Assert(brng.Contiguous(rng)).IsTrue()
+			g.Assert(crng.Contiguous(rng)).IsFalse()
+			g.Assert(rng.Contiguous(xrng)).IsFalse()
+
 			g.Assert(rng.Equals(xrng)).IsTrue()
 			g.Assert(rng.I()).Equal(3)
 			g.Assert(rng.J()).Equal(7)
