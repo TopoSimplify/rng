@@ -37,7 +37,7 @@ func (o *Range) J() int {
 func (o *Range) Index(index int) int {
 	var k = o.i + index
 	if k > o.j {
-		panic("undex out of bounds, i <= k <= j")
+		panic("index out of bounds, i <= k <= j")
 	}
 	return k
 }
@@ -89,7 +89,7 @@ func (o *Range) Stride(step ...int) []int {
 
 //Exclusive stride
 func (o *Range) ExclusiveStride(step ...int) []int {
-	s := 1
+	var s = 1
 	if len(step) > 0 {
 		s = step[0]
 	}
@@ -107,8 +107,8 @@ func (o *Range) Split(idxs []int) []*Range {
 		idxs = append(idxs, o.(int))
 	}
 
-	i, j := o.I(), o.J()
-	sub := make([]*Range, 0)
+	var i, j = o.I(), o.J()
+	var sub = make([]*Range, 0)
 	for _, idx := range idxs {
 		if i < idx && idx < j {
 			s := i
