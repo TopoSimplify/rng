@@ -22,8 +22,8 @@ func TestRange(t *testing.T) {
 			g.Assert(rng.Contiguous(xrng)).IsFalse()
 
 			g.Assert(rng.Equals(xrng)).IsTrue()
-			g.Assert(rng.I()).Equal(3)
-			g.Assert(rng.J()).Equal(7)
+			g.Assert(rng.I).Equal(3)
+			g.Assert(rng.J).Equal(7)
 			g.Assert(rng.Index(2)).Equal(5)
 			g.Assert(rng.Contains(7)).IsTrue()
 			g.Assert(rng.Contains(8)).IsFalse()
