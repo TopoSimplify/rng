@@ -3,7 +3,7 @@ package rng
 import "github.com/intdxdt/iter"
 
 //Stride
-func (o *Range) Stride(step ...int) []int {
+func (o Rng) Stride(step ...int) []int {
 	var s = 1
 	if len(step) > 0 {
 		s = step[0]
@@ -12,7 +12,7 @@ func (o *Range) Stride(step ...int) []int {
 }
 
 //Exclusive stride
-func (o *Range) ExclusiveStride(step ...int) []int {
+func (o *Rng) ExclusiveStride(step ...int) []int {
 	var s = 1
 	if len(step) > 0 {
 		s = step[0]

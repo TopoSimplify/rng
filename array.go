@@ -1,13 +1,13 @@
 package rng
 
 //As Array
-func (o *Range) AsArray() [2]int {
+func (o Rng) AsArray() [2]int {
 	return [2]int{o.I, o.J}
 }
 
 //As Slice
-func (o *Range) AsSlice() []int {
-	ar := o.AsArray()
-	return ar[:]
+func (o Rng) AsSlice() []int {
+	var a = o.AsArray()
+	return a[:]
 }
 

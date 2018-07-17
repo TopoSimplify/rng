@@ -8,14 +8,14 @@ import (
 
 func TestRange(t *testing.T) {
 	g := goblin.Goblin(t)
-	g.Describe("Range", func() {
+	g.Describe("Rng", func() {
 		g.It("int range", func() {
 			g.Timeout(1 * time.Minute)
-			arng := NewRange(7, 12)
-			brng := NewRange(0, 3)
-			crng := NewRange(2, 5)
-			rng  := NewRange(3, 7)
-			xrng := rng.Clone()
+			var arng = Range(7, 12)
+			var brng = Range(0, 3)
+			var crng = Range(2, 5)
+			var rng  = Range(3, 7)
+			var xrng = rng
 			g.Assert(arng.Contiguous(xrng)).IsTrue()
 			g.Assert(brng.Contiguous(rng)).IsTrue()
 			g.Assert(crng.Contiguous(rng)).IsFalse()
@@ -40,13 +40,13 @@ func TestRange(t *testing.T) {
 
 			g.Assert(rng.AsSlice()).Equal([]int{3, 7})
 			g.Assert(rng.AsSlice()).Equal([]int{3, 7})
-			g.Assert(rng.String()).Equal("Range(i=3, j=7)")
-			r := NewRange(0, 9)
-			g.Assert(r.Split([]int{3, 5})).Eql([]*Range{{0, 3}, {3, 5}, {5, 9}})
-			g.Assert(r.Split([]int{5, 3, 3, 5})).Eql([]*Range{{0, 3}, {3, 5}, {5, 9}})
-			g.Assert(r.Split([]int{0, 3, 5, 9})).Eql([]*Range{{0, 3}, {3, 5}, {5, 9}})
-			g.Assert(r.Split([]int{0, 3, 5, 9, 13})).Equal([]*Range{{0, 3}, {3, 5}, {5, 9}})
-			g.Assert(r.Split([]int{9, 13, 19})).Equal([]*Range{})
+			g.Assert(rng.String()).Equal("Rng(i=3, j=7)")
+			r := Range(0, 9)
+			g.Assert(r.Split([]int{3, 5})).Eql([]Rng{{0, 3}, {3, 5}, {5, 9}})
+			g.Assert(r.Split([]int{5, 3, 3, 5})).Eql([]Rng{{0, 3}, {3, 5}, {5, 9}})
+			g.Assert(r.Split([]int{0, 3, 5, 9})).Eql([]Rng{{0, 3}, {3, 5}, {5, 9}})
+			g.Assert(r.Split([]int{0, 3, 5, 9, 13})).Equal([]Rng{{0, 3}, {3, 5}, {5, 9}})
+			g.Assert(r.Split([]int{9, 13, 19})).Equal([]Rng{})
 		})
 
 		g.It("out of range", func() {
@@ -55,8 +55,8 @@ func TestRange(t *testing.T) {
 				g.Assert(r != nil).IsTrue()
 			}()
 			g.Timeout(1 * time.Minute)
-			rng := NewRange(3, 7)
-			xrng := rng.Clone()
+			var rng  = Range(3, 7)
+			var xrng = rng
 			g.Assert(rng.Equals(xrng)).IsTrue()
 			g.Assert(rng.Index(0)).Equal(3)
 			g.Assert(rng.Index(4)).Equal(7)

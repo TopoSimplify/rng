@@ -5,5 +5,4 @@ Range of indices from `i` to `j`
 coverage: 100.0% of statements
 
 # License
-
 (c) 2018 Titus Tienaah
