@@ -1,9 +1,9 @@
 package rng
 
 import (
-	"time"
-	"testing"
 	"github.com/franela/goblin"
+	"testing"
+	"time"
 )
 
 func TestRange(t *testing.T) {
@@ -14,7 +14,7 @@ func TestRange(t *testing.T) {
 			var arng = Range(7, 12)
 			var brng = Range(0, 3)
 			var crng = Range(2, 5)
-			var rng  = Range(3, 7)
+			var rng = Range(3, 7)
 			var xrng = rng
 			g.Assert(arng.Contiguous(xrng)).IsTrue()
 			g.Assert(brng.Contiguous(rng)).IsTrue()
@@ -35,9 +35,7 @@ func TestRange(t *testing.T) {
 			g.Assert(rng.ExclusiveStride(2)).Equal([]int{4, 6,})
 
 			g.Assert(rng.AsArray()).Equal([2]int{3, 7})
-			g.Assert(rng.AsArray()).Equal([2]int{3, 7})
 
-			g.Assert(rng.AsSlice()).Equal([]int{3, 7})
 			g.Assert(rng.AsSlice()).Equal([]int{3, 7})
 			g.Assert(rng.String()).Equal("Rng(i=3, j=7)")
 			r := Range(0, 9)
